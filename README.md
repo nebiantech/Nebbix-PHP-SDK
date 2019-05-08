@@ -1,4 +1,4 @@
-# telegram-core-api
+# Telegram-core-api
 Telegram mini library for telegram api.
 
 This is how to use the telegram bot api.
