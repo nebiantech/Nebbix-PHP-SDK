@@ -42,6 +42,9 @@ This is how to use the telegram bot api.
   $parse_mode = NULL or 'Markdown';
   
   print_r($tg->sendMessage($chat_id, $text, $parse_mode));
-
+  
+  return Bot details from token.
+  
+  print_r($tg->getMe());
+  
 ```
-``Hello``
