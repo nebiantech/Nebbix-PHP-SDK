@@ -20,7 +20,7 @@ This is how to use the telegram bot api.
   <h3>Markdown style</h3>
   
   To use this mode, pass Markdown in the parse_mode field when using sendMessage. Use the following syntax in your message:
-
+```
   *bold text*
   _italic text_
   [inline URL](http://www.example.com/)
