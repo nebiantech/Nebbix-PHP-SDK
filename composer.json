@@ -1,14 +1,10 @@
 {
-    "name": "mrbarnk/telegram-api-core",
-    "description": "A Php library for telegram api.",
+    "name": "nebbix/nebbix-php-client",
+    "description": "A Php library for nebbix transaction api.",
     "type": "library",
     "license": "MIT",
-    "authors": [
-        {
-            "name": "Bankole Emmanuel",
-            "email": "mrbarnk1@gmail.com"
-        }
-    ],
-    "minimum-stability": "dev",
-    "require": {}
+    "minimum-stability": "stable",
+    "require": {
+        "guzzlehttp/guzzle": "^7.3"
+    }
 }
