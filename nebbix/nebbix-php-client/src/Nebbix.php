@@ -7,7 +7,7 @@ require 'Exception.php';
 
 class Nebbix
 {
-  private $BASE_URL = 'http://localhost:8000/userApi'; //'https://core.nebbix.com/userApi';
+  private $BASE_URL = 'https://core.nebbix.com/userApi';
 
   private $userAccessToken = "";
   private $clientId = "";
