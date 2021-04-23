@@ -5,6 +5,11 @@ require("./nebbix/nebbix-php-client/src/Nebbix.php");
 
 $nebbix = new Nebbix("SUstLcEqsoNVxi7", "c3e45968-8b3f-42a6-8873-6fedf5194150");
 
+try {
+    echo json_encode($nebbix->getWalletBalance(2));
+} catch (\Throwable $th) {
+    echo $th->getMessage();
+}
 
 
 /*

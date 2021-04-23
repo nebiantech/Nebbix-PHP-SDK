@@ -1,13 +1,13 @@
 <?php
-use Guzzle\Http\Exception\ClientErrorResponseException;
 
+use Guzzle\Http\Exception\ClientErrorResponseException;
 
 require 'Exception.php';
 
 
 class Nebbix
 {
-  private $BASE_URL = 'https://core.nebbix.com/userApi';
+  private $BASE_URL = 'http://localhost:8000/userApi'; //'https://core.nebbix.com/userApi';
 
   private $userAccessToken = "";
   private $clientId = "";
@@ -19,43 +19,72 @@ class Nebbix
     if (is_null($this->userAccessToken) || is_null($this->clientId))
       throw new NebbixClientException('Required "userAccessToken" && "clientId" key not supplied');
   }
+    
 
   /**
-     * initializeTransactions
-     */
+   * getWallets
+   *
+   * @return void
+   */
+  public function getCoinsWithWallet() {
+    return $this->sendRequest('/coins', [], 'GET');
+  }
+
+  /**
+   * getWalletBalance
+   *
+   * @param  mixed $id
+   * @return void
+   */
+  public function getWalletBalance($id) {
+    return $this->sendRequest("/balance/$id", [], 'GET');
+  }
+
+  /**
+   * initializeTransactions
+   *
+   * @param  mixed $body
+   * @return void
+   */
   public function initializeTransactions($body) {
       return $this->sendRequest("/payment/initialize", $body);
   }
-
+  
   /**
    * paymentQuery
-   * GET request to query transaction;
-  */
-  
-  public function paymentQuery ($ref) {
+   *
+   * @param  string $ref
+   * @return void
+   */
+  public function paymentQuery (string $ref) {
       return $this->sendRequest("/payment/query?reference_code=$ref", [], "GET");
   }
-
+    
   /**
    * createBtcwallet
-  */
-  
+   *
+   * @param  mixed $body
+   * @return void
+   */
   public function createBtcwallet ($body) {
       return $this->sendRequest("/wallet/btc/create", $body);
   }
-
+    
   /**
    * createBtcwalletAddress
-  */
-  
+   *
+   * @param  mixed $body
+   * @return void
+   */
   public function createBtcwalletAddress ($body) {
       return $this->sendRequest("/wallet/btc/create_address", $body);
   }
-
+  
   /**
    * getBtcWallets
-  */
-  
+   *
+   * @return void
+   */
   public function getBtcWallets () {
       return $this->sendRequest(`/wallet/btc`, [], "GET");
   }
@@ -64,7 +93,7 @@ class Nebbix
    * getBtcWallet
   */
   
-  public function getBtcWallet ($wallet_id) {
+  public function getBtcWalletAddressesWithBalance ($wallet_id) {
       return $this->sendRequest("/wallet/btc/getWalletDetails/$wallet_id", [], "GET");
   }
 
@@ -83,43 +112,54 @@ class Nebbix
   public function createLtcwalletAddress ($body) {
       return $this->sendRequest("/wallet/ltc/create_address", $body);
   }
-
-  /**
-   * getLtcWallet
-  */
   
-  public function getLtcWallet ($wallet_id) {
+    
+  /**
+   * getLtcWalletAddressesWithBalance
+   *
+   * @param  mixed $wallet_id
+   * @return void
+   */
+  public function getLtcWalletAddressesWithBalance ($wallet_id) {
       return $this->sendRequest("/wallet/ltc/get_wallets?wallet_id=$wallet_id", [], "GET");
   }
-
+  
   /**
    * createDogewallet
-  */
-  
+   *
+   * @param  mixed $body
+   * @return void
+   */
   public function createDogewallet ($body) {
       return $this->sendRequest("/wallet/doge/create", $body);
   }
-
+  
   /**
    * createDogewalletAddress
-  */
-  
+   *
+   * @param  mixed $body
+   * @return void
+   */
   public function createDogewalletAddress ($body) {
       return $this->sendRequest("/wallet/doge/create_address", $body);
   }
-
+  
   /**
    * getDogeWallet
-  */
-  
+   *
+   * @param  mixed $wallet_id
+   * @return void
+   */
   public function getDogeWallet ($wallet_id) {
       return $this->sendRequest(`/wallet/doge/get_wallets?wallet_id=$wallet_id`, [], "GET");
   }
-
+  
   /**
    * sendBtc
-  */
-
+   *
+   * @param  mixed $body
+   * @return void
+   */
   public function sendBtc($body) {
       return $this->sendRequest("/wallet/btc/send", $body);
   }

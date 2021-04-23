@@ -1,6 +1,6 @@
 <?php
 
-namespace Nebbix\Client;
+namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
